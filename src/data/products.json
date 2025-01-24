@@ -1,0 +1,27 @@
+[
+    [
+        {
+          "id": "1",
+          "title": "Laptop Dell",
+          "description": "Laptop de alto rendimiento para profesionales.",
+          "code": "DL-2025",
+          "price": 1500,
+          "status": true,
+          "stock": 20,
+          "category": "Electrónica",
+          "thumbnails": ["img/dell.jpg"]
+        },
+        {
+          "id": "2",
+          "title": "Mouse Inalámbrico",
+          "description": "Mouse ergonómico con conectividad Bluetooth.",
+          "code": "MS-3030",
+          "price": 25,
+          "status": true,
+          "stock": 100,
+          "category": "Accesorios",
+          "thumbnails": ["img/mouse.jpg"]
+        }
+      ]
+      
+]
