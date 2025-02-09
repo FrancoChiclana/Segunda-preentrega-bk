@@ -1,7 +1,9 @@
 const express = require('express');
 const fs = require('fs');
 const router = express.Router();
-const path = ('../data/carts.json');
+
+const pathModule = require("path");
+const path = pathModule.resolve("src", "data", "carts.json")
 
 const readCarts = () => JSON.parse(fs.readFileSync(path, 'utf-8'));
 
@@ -9,8 +11,7 @@ const saveCarts = (carts) => fs.writeFileSync(path, JSON.stringify(carts, null, 
 
 router.post('/', (req,res) => {
     const carts = readCarts();
-    const newCart = { id: String(carts.lengh + 1), products: []};
-
+    const newCart = { id: String(carts.lengt + 1), products: []};
     carts.push(newCart);
     saveCarts(carts);
     res.status(201).json(newCart);
@@ -24,7 +25,9 @@ router.get('/:cid', (req, res) =>{
 });
 
 router.post('/:cid/product/:pid', (req, res) => {
+
     const carts = readCarst();
+
     const cart = carts.find(x => c.id === req.params.cid);
 
     if(!cart) return res.status(404).send('Carrito no encontrado');
