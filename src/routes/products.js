@@ -8,8 +8,7 @@ const writeFile = (data) => fs.writeFileSync(productsPath, JSON.stringify(data, 
 
 module.exports = (io) => {
   router.get('/', (req, res) => {
-    const products = readFile();
-    res.json(products);
+    res.json(readFile());
   });
 
   router.post('/', (req, res) => {
