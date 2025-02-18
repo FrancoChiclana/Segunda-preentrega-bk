@@ -8,7 +8,8 @@ const writeFile = (data) => fs.writeFileSync(productsPath, JSON.stringify(data, 
 
 module.exports = (io) => {
   router.get('/', (req, res) => {
-    res.json(readFile());
+    const products = readFile();
+    res.json(products);
   });
 
   router.post('/', (req, res) => {
@@ -18,6 +19,17 @@ module.exports = (io) => {
     writeFile(products);
     io.emit('updateProducts', products);
     res.status(201).json(newProduct);
+  });
+
+  router.put('/:pid', (req, res) => {
+    let products = readFile();
+    const index = products.findIndex(p => p.id === req.params.pid);
+    if (index === -1) return res.status(404).json({ message: 'Producto no encontrado' });
+
+    products[index] = { ...products[index], ...req.body, id: products[index].id };
+    writeFile(products);
+    io.emit('updateProducts', products);
+    res.status(200).json(products[index]);
   });
 
   router.delete('/:pid', (req, res) => {
